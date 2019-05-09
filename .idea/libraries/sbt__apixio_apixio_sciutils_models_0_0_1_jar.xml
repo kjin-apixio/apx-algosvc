@@ -1,0 +1,11 @@
+<component name="libraryTable">
+  <library name="sbt: apixio:apixio-sciutils-models:0.0.1:jar">
+    <CLASSES>
+      <root url="jar://$MAVEN_REPOSITORY$/apixio/apixio-sciutils-models/0.0.1/apixio-sciutils-models-0.0.1.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.ivy2/cache/apixio/apixio-sciutils-models/srcs/apixio-sciutils-models-0.0.1-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

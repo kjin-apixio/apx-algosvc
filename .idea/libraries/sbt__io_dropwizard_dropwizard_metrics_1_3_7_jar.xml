@@ -1,0 +1,11 @@
+<component name="libraryTable">
+  <library name="sbt: io.dropwizard:dropwizard-metrics:1.3.7:jar">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.ivy2/cache/io.dropwizard/dropwizard-metrics/jars/dropwizard-metrics-1.3.7.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.ivy2/cache/io.dropwizard/dropwizard-metrics/srcs/dropwizard-metrics-1.3.7-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

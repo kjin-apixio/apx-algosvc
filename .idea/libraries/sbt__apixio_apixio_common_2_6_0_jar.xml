@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="sbt: apixio:apixio-common:2.6.0:jar">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.ivy2/cache/apixio/apixio-common/jars/apixio-common-2.6.0.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

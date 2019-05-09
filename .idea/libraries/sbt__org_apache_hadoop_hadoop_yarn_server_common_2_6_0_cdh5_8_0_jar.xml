@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="sbt: org.apache.hadoop:hadoop-yarn-server-common:2.6.0-cdh5.8.0:jar">
+    <CLASSES>
+      <root url="jar://$MAVEN_REPOSITORY$/org/apache/hadoop/hadoop-yarn-server-common/2.6.0-cdh5.8.0/hadoop-yarn-server-common-2.6.0-cdh5.8.0.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

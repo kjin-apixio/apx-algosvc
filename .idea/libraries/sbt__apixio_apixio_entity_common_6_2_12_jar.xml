@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="sbt: apixio:apixio-entity-common:6.2.12:jar">
+    <CLASSES>
+      <root url="jar://$MAVEN_REPOSITORY$/apixio/apixio-entity-common/6.2.12/apixio-entity-common-6.2.12.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

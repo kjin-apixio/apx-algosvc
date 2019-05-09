@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="sbt: apixio:apixio-pipeline-common:2.7.4:jar">
+    <CLASSES>
+      <root url="jar://$MAVEN_REPOSITORY$/apixio/apixio-pipeline-common/2.7.4/apixio-pipeline-common-2.7.4.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

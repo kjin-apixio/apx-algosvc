@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="sbt: com.logentries.re2:libre2-java:1.2.5apx:jar">
+    <CLASSES>
+      <root url="jar://$MAVEN_REPOSITORY$/com/logentries/re2/libre2-java/1.2.5apx/libre2-java-1.2.5apx.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

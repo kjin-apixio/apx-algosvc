@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="sbt: apixio:signalmanager-serde:1.2.8:jar">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.ivy2/cache/apixio/signalmanager-serde/jars/signalmanager-serde-1.2.8.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

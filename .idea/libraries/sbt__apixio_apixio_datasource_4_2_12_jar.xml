@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="sbt: apixio:apixio-datasource:4.2.12:jar">
+    <CLASSES>
+      <root url="jar://$MAVEN_REPOSITORY$/apixio/apixio-datasource/4.2.12/apixio-datasource-4.2.12.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

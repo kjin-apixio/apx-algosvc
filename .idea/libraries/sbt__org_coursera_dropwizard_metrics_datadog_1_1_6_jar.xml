@@ -1,0 +1,11 @@
+<component name="libraryTable">
+  <library name="sbt: org.coursera:dropwizard-metrics-datadog:1.1.6:jar">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.ivy2/cache/org.coursera/dropwizard-metrics-datadog/jars/dropwizard-metrics-datadog-1.1.6.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.ivy2/cache/org.coursera/dropwizard-metrics-datadog/srcs/dropwizard-metrics-datadog-1.1.6-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

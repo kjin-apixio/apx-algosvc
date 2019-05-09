@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="sbt: org.mortbay.jetty:jetty-util:6.1.26.cloudera.4:jar">
+    <CLASSES>
+      <root url="jar://$MAVEN_REPOSITORY$/org/mortbay/jetty/jetty-util/6.1.26.cloudera.4/jetty-util-6.1.26.cloudera.4.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

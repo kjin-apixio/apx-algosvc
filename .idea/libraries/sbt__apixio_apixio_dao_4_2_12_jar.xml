@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="sbt: apixio:apixio-dao:4.2.12:jar">
+    <CLASSES>
+      <root url="jar://$MAVEN_REPOSITORY$/apixio/apixio-dao/4.2.12/apixio-dao-4.2.12.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

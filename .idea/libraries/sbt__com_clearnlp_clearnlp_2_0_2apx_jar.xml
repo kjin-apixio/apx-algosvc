@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="sbt: com.clearnlp:clearnlp:2.0.2apx:jar">
+    <CLASSES>
+      <root url="jar://$MAVEN_REPOSITORY$/com/clearnlp/clearnlp/2.0.2apx/clearnlp-2.0.2apx.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

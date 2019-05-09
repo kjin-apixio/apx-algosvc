@@ -1,0 +1,301 @@
+server:
+  rootPath: /
+  applicationConnectors:
+    - type: http
+      port: 8888
+  adminConnectors:
+    - type: http
+      port: 9888
+  requestLog:
+    appenders:
+      - type: file
+        currentLogFilename: access/access.current.log
+        archivedLogFilenamePattern: access/access.%d{yyyy-MM-dd_HH}.log
+        archivedFileCount: 10000
+        timeZone: UTC
+apxLogging:
+  appName: patientsvc
+  fluentHost: localhost
+  prefix: staging.patientsvc
+
+logging:
+  level: DEBUG
+  loggers:
+    io.dropwizard: INFO
+    org.eclipse.jetty: WARN
+    org.apache.kafka: WARN
+    com.datastax: WARN
+    "kafka_assemblymerge_error":
+      level: ERROR
+      additive: false
+      appenders:
+      - type: file
+        currentLogFilename: log/kafka_assemblymerge_error.log
+        threshold: ERROR
+        archive: true
+        archivedLogFilenamePattern: log/kafka_assemblymerge_error-%d.log
+        archivedFileCount: 5
+        timeZone: UTC
+    "kafka_outputreport_error":
+        level: ERROR
+        additive: false
+        appenders:
+           - type: file
+             currentLogFilename: log/kafka_outputreport_errors.log
+             threshold: ERROR
+             archive: true
+             archivedLogFilenamePattern: log/kafka_outputreport_errors-%d.log
+             archivedFileCount: 5
+             timeZone: UTC
+    "kafka_patientsignalflow_error":
+        level: ERROR
+        additive: false
+        appenders:
+           - type: file
+             currentLogFilename: log/kafka_patientsignalflow_errors.log
+             threshold: ERROR
+             archive: true
+             archivedLogFilenamePattern: log/kafka_patientsignalflow_errors-%d.log
+             archivedFileCount: 5
+             timeZone: UTC
+    "ReactiveConsumer-errorRecovery-errorMarshalling":
+        level: ERROR
+        additive: false
+        appenders:
+           - type: file
+             currentLogFilename: log/kafka_errorMarshalling_errors.log
+             threshold: ERROR
+             archive: true
+             archivedLogFilenamePattern: log/kafka_errorMarshalling_errors-%d.log
+             archivedFileCount: 5
+             timeZone: UTC
+    "ReactiveConsumer-errorRecovery-process":
+        level: ERROR
+        additive: false
+        appenders:
+           - type: file
+             currentLogFilename: log/kafka_process_errors.log
+             threshold: ERROR
+             archive: true
+             archivedLogFilenamePattern: log/kafka_process_errors-%d.log
+             archivedFileCount: 5
+             timeZone: UTC
+    "ReactiveConsumer-errorRecovery-precommit":
+        level: ERROR
+        additive: false
+        appenders:
+           - type: file
+             currentLogFilename: log/kafka_precommit_errors.log
+             threshold: ERROR
+             archive: true
+             archivedLogFilenamePattern: log/kafka_precommit_errors-%d.log
+             archivedFileCount: 5
+             timeZone: UTC
+    "ReactiveConsumer-errorRecovery-postcommit":
+        level: ERROR
+        additive: false
+        appenders:
+           - type: file
+             currentLogFilename: log/kafka_postcommit_errors.log
+             threshold: ERROR
+             archive: true
+             archivedLogFilenamePattern: log/kafka_postcommit_errors-%d.log
+             archivedFileCount: 5
+             timeZone: UTC
+  appenders:
+    - type: console
+      threshold: ALL
+      timeZone: UTC
+      target: stdout
+      logFormat: # TODO
+    - type: file
+      currentLogFilename: log/apx-patientsvc.log
+      threshold: ALL
+      archive: true
+      archivedLogFilenamePattern: log/apx-patientsvc-%d-%i.log
+      archivedFileCount: 5
+      maxFileSize: 1GB
+      timeZone: UTC
+      logFormat: # TODO
+
+redis:
+  host: redis-1-stg.apixio.com
+  port: 6379
+  prefix: development-
+
+cql:
+  hosts: 10.1.16.107,10.1.32.154,10.1.48.111
+  binaryPort: 9042
+  keyspace: apixio
+  connections.min: 2
+  connections.max: 2
+  connections.baseDelayMs: 50
+  connections.maxDelayMs: 250
+  localDC: aws-us-west-2
+  username: frontend-stg
+  password: m3PW2195FpARlaBH
+  linkTable: apx_cflink
+  linkTable2: apx_cflink
+
+cqlInternal:
+  hosts: 10.1.16.77,10.1.48.254,10.1.32.222
+  binaryPort: 9042
+  keyspace: internal
+  connections.min: 8
+  connections.max: 8
+  connections.baseDelayMs: 50
+  connections.maxDelayMs: 250
+  localDC: aws-us-west-2
+  username: frontend-stg
+  password: m3PW2195FpARlaBH
+
+cqlApplication:
+  hosts: 10.1.32.66,10.1.48.137,10.1.16.127
+  binaryPort: 9042
+  keyspace: application
+  connections.min: 8
+  connections.max: 8
+  connections.baseDelayMs: 50
+  connections.maxDelayMs: 250
+  localDC: aws-us-west-2
+  username: pipeline-stg
+  password: orSEmXXX7s6VS2tk
+
+cqlSignal:
+  hosts: 10.1.16.107,10.1.32.154,10.1.48.111
+  binaryPort: 9042
+  keyspace: signalmgr
+  connections.min: 8
+  connections.max: 8
+  connections.baseDelayMs: 50
+  connections.maxDelayMs: 250
+  localDC: aws-us-west-2
+  username: signalmgrrw-stg
+  password: l8cH4PDFqHqdw4Mn
+
+s3:
+  accessKey: 241795449124054624256V01xZeGtbETraAG82BVbi/ct9RhkWpCqmW7F18BI7gey2l4=
+  secretKey: 241735057179154659872V01xsorqhq2Cvt9crpijF0Vpz0+KrJpyMEJJzEuJtF1FaUuNJ9P3dXWAhL39wHgvIzPW
+  container: apixio-documents-test
+
+acl:
+  cassandraColumnFamily: apx_cfacl_development
+  jsonFile: apiacls.json
+  level: DETAILED
+
+microservices:
+  useraccounts: https://useraccount-dev.apixio.com:7076
+  tokenizer: https://tokenizer-dev.apixio.com:7075
+  npi: https://npi-service-stg.apixio.com:8443
+  smas: https://signalmgradmin-stg.apixio.com:8443
+  metrics: https://metrics-stg.apixio.com:8443
+  readTimeoutMs: 60000
+  connTimeoutMs: 10000
+
+kafkaSignal:
+  servers:  kafka-modern.stg.apixio.com:9092
+  consumer:
+    config-default:
+      # best practice: keep this same as applicationId
+      group.id:           SignalManagerStg
+      key.deserializer:   "org.apache.kafka.common.serialization.StringDeserializer"
+      value.deserializer: "org.apache.kafka.common.serialization.StringDeserializer"
+  producer:
+    config-default:
+      key.serializer:     "org.apache.kafka.common.serialization.StringSerializer"
+      value.serializer:   "org.apache.kafka.common.serialization.StringSerializer"
+
+jdbcSignalControl:
+    verboseSql:            true
+    connectionUrl:         "jdbc:mysql://signalmgr-db.stg.apixio.com:3306/signalmgmt"
+    driverClassname:       "com.mysql.cj.jdbc.Driver"
+    username:              "signalmgrctrl"
+    password:              "UPZjajFk8r2zJBkn"
+    maxTotal:              25
+
+kafka:
+  servers: kafka-modern.stg.apixio.com:9092
+
+application:
+  login: https://accounts-dev.apixio.com/?caller=cmp-local
+  logout: https://accounts-dev.apixio.com/logout/?caller=cmp-local
+  event.propertyName:  apxEventsProperties
+  akkaConfPath: akka.conf
+
+  patientSignal:
+    brokerList: kafka-modern.stg.apixio.com:9092
+    consumerGroup: "patientSignalGroupStage"
+    topic: "local_patient_signals-memory-leak-creator"
+    consumerParallelismFactor: 5
+    commitParallelismFactor: 5
+    numRetries: 5
+    batchSize: 100
+    maxIntervalInSecs: 60
+    indexerSignalTopic: "indexer_signals-high-stg"
+  predictionFlow:
+    brokerList: kafka-modern.stg.apixio.com:9092
+    consumerGroup: "PredictionGroupLocal"
+    topic: "^predictionsLocal.*"
+    consumerParallelismFactor: 1
+    batchSize: 100
+    timeout: 5000
+    metricsTableName: david_test_888
+    metricsTopicName: simple_metric_recording_topic
+    indexerSignalTopic: "indexer_signals-normal-stg"
+  outputReportCachePainter:
+    brokerList: kafka-modern.stg.apixio.com:9092
+    consumerGroup: "outputReportCachePainter2"
+    topic: "outputreport"
+    consumerParallelismFactor: 5
+    commitParallelismFactor: 5
+    numRetries: 5
+    batchSize: 100
+    maxIntervalInSecs: 60
+    blackList: ""
+    indexerSignalTopic: "indexer_signals-high-stg"
+  patientMergeDownConsumer:
+    brokerList: kafka-modern.stg.apixio.com:9092
+    consumerGroup: "patientAssemblyMergeDownGroup"
+    topic: "patientAssemblyMergeDown"
+    consumerParallelismFactor: 5
+    commitParallelismFactor: 5
+    numRetries: 5
+    batchSize: 100
+    maxIntervalInSecs: 60
+    indexerSignalTopic: "indexer_signals-high-stg"
+  smugglingConsumer:
+    brokerList: kafka-modern.stg.apixio.com:9092
+    consumerGroup: "SmugglerGroupLocal"
+    topic: "^smugglerLocal.*"
+    consumerParallelismFactor: 5
+    commitParallelismFactor: 5
+    numRetries: 5
+    batchSize: 100
+    maxIntervalInSecs: 60
+    smugglerTopicPrefix: "smugglerLocal_"
+    auditorPredictionTopicPrefix: "predictionsLocal_AUDITOR_"
+    maPredictionTopicPrefix: "predictionsLocal_MA_"
+  docsetFlow:
+    brokerList: kafka-modern.stg.apixio.com:9092
+    consumerGroup: "docsSetFlowStagedfdf"
+    topic: "docsetFlowTestlocal"
+    consumerParallelismFactor: 5
+    commitParallelismFactor: 5
+    numRetries: 5
+    batchSize: 100
+    maxIntervalInSecs: 60
+    indexerSignalTopic: "indexer_signals-high-local"
+  findingsPropertySignal:
+    indexerSignalTopic: "indexer_signals-high-local"
+  appPatientSignal:
+    brokerList: kafka-modern.stg.apixio.com:9092
+    topic: "testAppPatientSignal"
+path:
+  config: /etc/apx-patientsvc/apx-patientsvc.conf
+
+consul:
+   address: http://10.1.4.214:8500/v1
+   dc: stg
+   token: 4ee2ce93-cc61-46a7-a2a2-65316101ccb9
+   refreshInterval: 1 #minutes
+   urlTemplate: https://%s-stg.apixio.com:%s%s # %s,%s,%s = host,port,baseApi

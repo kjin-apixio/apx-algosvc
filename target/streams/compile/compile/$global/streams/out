@@ -1,0 +1,13 @@
+[0m[[0m[31merror[0m] [0m[0m/Users/kjin/IdeaProjects/apx-predictionmessagesvc/src/main/scala/com/apixio/algoservice/algo/Combiner.scala:27:43: not found: type CombinerMaterializer[0m
+[0m[[0m[31merror[0m] [0m[0mclass Combiner (val combinerMaterializer: CombinerMaterializer ){[0m
+[0m[[0m[31merror[0m] [0m[0m                                          ^[0m
+[0m[[0m[31merror[0m] [0m[0m/Users/kjin/IdeaProjects/apx-predictionmessagesvc/src/main/scala/com/apixio/algoservice/algo/Combiner.scala:37:28: not found: value benchmarkResolve[0m
+[0m[[0m[31merror[0m] [0m[0m    val modelCombination = benchmarkResolve(mcId)[0m
+[0m[[0m[31merror[0m] [0m[0m                           ^[0m
+[0m[[0m[31merror[0m] [0m[0m/Users/kjin/IdeaProjects/apx-predictionmessagesvc/src/main/scala/com/apixio/algoservice/algo/Combiner.scala:38:21: not found: value benchmarkCreate[0m
+[0m[[0m[31merror[0m] [0m[0m    this.combiner = benchmarkCreate(modelCombination)[0m
+[0m[[0m[31merror[0m] [0m[0m                    ^[0m
+[0m[[0m[31merror[0m] [0m[0m/Users/kjin/IdeaProjects/apx-predictionmessagesvc/src/main/scala/com/apixio/algoservice/algo/Combiner.scala:39:5: not found: value benchmarkSetup[0m
+[0m[[0m[31merror[0m] [0m[0m    benchmarkSetup(modelCombination, combiner)[0m
+[0m[[0m[31merror[0m] [0m[0m    ^[0m
+[0m[[0m[31merror[0m] [0m[0mfour errors found[0m

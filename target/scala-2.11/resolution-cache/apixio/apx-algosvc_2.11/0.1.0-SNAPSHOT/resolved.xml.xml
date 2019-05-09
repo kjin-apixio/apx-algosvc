@@ -1,0 +1,221 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ivy-module version="2.0" xmlns:e="http://ant.apache.org/ivy/extra">
+	<info organisation="apixio"
+		module="apx-algosvc_2.11"
+		revision="0.1.0-SNAPSHOT"
+		status="integration"
+		publication="20190509142811"
+	>
+		<description>
+		apx-algosvc
+		</description>
+	</info>
+	<configurations>
+		<conf name="compile" visibility="public" description=""/>
+		<conf name="runtime" visibility="public" description="" extends="compile"/>
+		<conf name="test" visibility="public" description="" extends="runtime"/>
+		<conf name="provided" visibility="public" description=""/>
+		<conf name="optional" visibility="public" description=""/>
+		<conf name="compile-internal" visibility="private" description="" extends="compile,optional,provided"/>
+		<conf name="runtime-internal" visibility="private" description="" extends="runtime,optional"/>
+		<conf name="test-internal" visibility="private" description="" extends="test,optional,provided"/>
+		<conf name="plugin" visibility="private" description=""/>
+		<conf name="pom" visibility="public" description=""/>
+		<conf name="scala-tool" visibility="private" description=""/>
+		<conf name="scoveragePlugin" visibility="private" description=""/>
+	</configurations>
+	<publications>
+		<artifact name="apx-algosvc_2.11" type="jar" ext="jar" conf="compile,runtime,test,provided,optional,pom" e:classifier="assembly"/>
+		<artifact name="apx-algosvc_2.11" type="pom" ext="pom" conf="pom"/>
+		<artifact name="apx-algosvc_2.11" type="jar" ext="jar" conf="compile"/>
+		<artifact name="apx-algosvc_2.11" type="src" ext="jar" conf="compile" e:classifier="sources"/>
+		<artifact name="apx-algosvc_2.11" type="doc" ext="jar" conf="compile" e:classifier="javadoc"/>
+	</publications>
+	<dependencies>
+		<dependency org="org.scala-lang" name="scala-compiler" rev="2.11.12" conf="scala-tool->default,optional(default)"/>
+		<dependency org="org.scala-lang" name="scala-library" rev="2.11.12" conf="scala-tool->default,optional(default);compile->default(compile)"/>
+		<dependency org="org.scalatest" name="scalatest_2.11" rev="3.0.5" conf="test->default(compile)"/>
+		<dependency org="org.scalacheck" name="scalacheck_2.11" rev="1.12.6" conf="test->default(compile)"/>
+		<dependency org="org.pegdown" name="pegdown" rev="1.6.0" conf="test->default(compile)"/>
+		<dependency org="org.mockito" name="mockito-all" rev="1.10.19" conf="test->default(compile)"/>
+		<dependency org="com.hubspot.dropwizard" name="dropwizard-guice" rev="1.0.6.0" conf="compile->default(compile)"/>
+		<dependency org="com.google.inject" name="guice" rev="4.0" conf="compile->default(compile)"/>
+		<dependency org="org.json" name="json" rev="20180130" conf="compile->default(compile)"/>
+		<dependency org="io.swagger" name="swagger-jaxrs" rev="1.5.17" conf="compile->default(compile)">
+			<exclude org="commons-logging" module="commons-logging" name="*" type="*" ext="*" conf="" matcher="exact"/>
+			<exclude org="javax.ws.rs" module="jsr311-api" name="*" type="*" ext="*" conf="" matcher="exact"/>
+			<exclude org="com.fasterxml.jackson.core" module="*" name="*" type="*" ext="*" conf="" matcher="exact"/>
+			<exclude org="com.fasterxml.jackson.datatype" module="*" name="*" type="*" ext="*" conf="" matcher="exact"/>
+			<exclude org="com.fasterxml.jackson.module" module="*" name="*" type="*" ext="*" conf="" matcher="exact"/>
+			<exclude org="com.fasterxml.jackson.jaxrs" module="*" name="*" type="*" ext="*" conf="" matcher="exact"/>
+		</dependency>
+		<dependency org="io.swagger" name="swagger-scala-module_2.11" rev="1.0.4" conf="compile->default(compile)">
+			<exclude org="com.fasterxml.jackson.core" module="*" name="*" type="*" ext="*" conf="" matcher="exact"/>
+			<exclude org="com.fasterxml.jackson.datatype" module="*" name="*" type="*" ext="*" conf="" matcher="exact"/>
+			<exclude org="com.fasterxml.jackson.module" module="*" name="*" type="*" ext="*" conf="" matcher="exact"/>
+			<exclude org="com.fasterxml.jackson.jaxrs" module="*" name="*" type="*" ext="*" conf="" matcher="exact"/>
+		</dependency>
+		<dependency org="apixio" name="apixio-signalmanager-bizlogic" rev="1.0.5" conf="compile->default(compile)">
+			<exclude org="com.fasterxml.jackson.core" module="*" name="*" type="*" ext="*" conf="" matcher="exact"/>
+			<exclude org="com.fasterxml.jackson.datatype" module="*" name="*" type="*" ext="*" conf="" matcher="exact"/>
+			<exclude org="com.fasterxml.jackson.module" module="*" name="*" type="*" ext="*" conf="" matcher="exact"/>
+			<exclude org="com.fasterxml.jackson.jaxrs" module="*" name="*" type="*" ext="*" conf="" matcher="exact"/>
+			<exclude org="org.hamcrest" module="*" name="*" type="*" ext="*" conf="" matcher="exact"/>
+			<exclude org="org.slf4j" module="slf4j-api" name="*" type="*" ext="*" conf="" matcher="exact"/>
+			<exclude org="org.slf4j" module="slf4j-log4j12" name="*" type="*" ext="*" conf="" matcher="exact"/>
+			<exclude org="org.mockito" module="mockito-core" name="*" type="*" ext="*" conf="" matcher="exact"/>
+			<exclude org="org.mockito" module="mockito-all" name="*" type="*" ext="*" conf="" matcher="exact"/>
+			<exclude org="javax.ws.rs" module="jsr311-api" name="*" type="*" ext="*" conf="" matcher="exact"/>
+			<exclude org="com.sun.jersey" module="*" name="*" type="*" ext="*" conf="" matcher="exact"/>
+			<exclude org="com.sun.jersey" module="jersey-client" name="*" type="*" ext="*" conf="" matcher="exact"/>
+			<exclude org="com.sun.jersey" module="jersey-server" name="*" type="*" ext="*" conf="" matcher="exact"/>
+			<exclude org="apixio" module="apixio-bizlogic" name="*" type="*" ext="*" conf="" matcher="exact"/>
+			<exclude org="apixio" module="apixio-dao" name="*" type="*" ext="*" conf="" matcher="exact"/>
+			<exclude org="apixio" module="apixio-datasource" name="*" type="*" ext="*" conf="" matcher="exact"/>
+			<exclude org="io.netty" module="*" name="*" type="*" ext="*" conf="" matcher="exact"/>
+			<exclude org="com.codahale.metrics" module="*" name="*" type="*" ext="*" conf="" matcher="exact"/>
+			<exclude org="io.dropwizard.metrics" module="*" name="*" type="*" ext="*" conf="" matcher="exact"/>
+			<exclude org="commons-beanutils" module="*" name="*" type="*" ext="*" conf="" matcher="exact"/>
+			<exclude org="log4j" module="*" name="*" type="*" ext="*" conf="" matcher="exact"/>
+			<exclude org="org.slf4j" module="*" name="*" type="*" ext="*" conf="" matcher="exact"/>
+			<exclude org="junit" module="*" name="*" type="*" ext="*" conf="" matcher="exact"/>
+			<exclude org="org.springframework" module="*" name="*" type="*" ext="*" conf="" matcher="exact"/>
+		</dependency>
+		<dependency org="apixio" name="application-dropwizard-base_2.11" rev="0.5.18" conf="compile->default(compile)">
+			<exclude org="javax.inject" module="javax.inject" name="*" type="*" ext="*" conf="" matcher="exact"/>
+			<exclude org="commons-io" module="commons-io" name="*" type="*" ext="*" conf="" matcher="exact"/>
+			<exclude org="commons-logging" module="commons-logging" name="*" type="*" ext="*" conf="" matcher="exact"/>
+			<exclude org="com.codahale.metrics" module="metrics-core" name="*" type="*" ext="*" conf="" matcher="exact"/>
+			<exclude org="net.minidev" module="asm" name="*" type="*" ext="*" conf="" matcher="exact"/>
+			<exclude org="org.springframework.security" module="spring-security-core" name="*" type="*" ext="*" conf="" matcher="exact"/>
+			<exclude org="org.springframework" module="spring-aop" name="*" type="*" ext="*" conf="" matcher="exact"/>
+			<exclude org="org.springframework" module="spring-web" name="*" type="*" ext="*" conf="" matcher="exact"/>
+			<exclude org="org.springframework" module="spring-context" name="*" type="*" ext="*" conf="" matcher="exact"/>
+			<exclude org="org.springframework" module="spring-jdbc" name="*" type="*" ext="*" conf="" matcher="exact"/>
+			<exclude org="org.springframework" module="spring-tx" name="*" type="*" ext="*" conf="" matcher="exact"/>
+			<exclude org="org.springframework" module="spring-beans" name="*" type="*" ext="*" conf="" matcher="exact"/>
+			<exclude org="apixio" module="apixio-model-converter" name="*" type="*" ext="*" conf="" matcher="exact"/>
+			<exclude org="junit" module="junit" name="*" type="*" ext="*" conf="" matcher="exact"/>
+			<exclude org="org.hamcrest" module="hamcrest-core" name="*" type="*" ext="*" conf="" matcher="exact"/>
+			<exclude org="commons-beanutils" module="commons-beanutils-core" name="*" type="*" ext="*" conf="" matcher="exact"/>
+			<exclude org="com.codahale.metrics" module="metrics-annotation" name="*" type="*" ext="*" conf="" matcher="exact"/>
+			<exclude org="net.jpountz.lz4" module="lz4" name="*" type="*" ext="*" conf="" matcher="exact"/>
+		</dependency>
+		<dependency org="apixio" name="app-platform_2.11" rev="0.2.0" conf="compile->default(compile)">
+			<exclude org="org.slf4j" module="slf4j-log4j12" name="*" type="*" ext="*" conf="" matcher="exact"/>
+			<exclude org="log4j" module="log4j" name="*" type="*" ext="*" conf="" matcher="exact"/>
+		</dependency>
+		<dependency org="apixio" name="app-platform-bizlogic_2.11" rev="0.2.5" conf="compile->default(compile)">
+			<exclude org="org.slf4j" module="slf4j-log4j12" name="*" type="*" ext="*" conf="" matcher="exact"/>
+			<exclude org="log4j" module="log4j" name="*" type="*" ext="*" conf="" matcher="exact"/>
+		</dependency>
+		<dependency org="apixio" name="apixio-model" rev="1.23.0" conf="compile->default(compile)"/>
+		<dependency org="apixio" name="apixio-signalmanager-event-handler" rev="1.2.8" conf="compile->default(compile)"/>
+		<dependency org="apixio" name="scala-common_2.11" rev="2.8.0" conf="compile->default(compile)">
+			<exclude org="com.fasterxml.jackson.core" module="*" name="*" type="*" ext="*" conf="" matcher="exact"/>
+			<exclude org="com.fasterxml.jackson.datatype" module="*" name="*" type="*" ext="*" conf="" matcher="exact"/>
+			<exclude org="com.fasterxml.jackson.module" module="*" name="*" type="*" ext="*" conf="" matcher="exact"/>
+			<exclude org="com.fasterxml.jackson.jaxrs" module="*" name="*" type="*" ext="*" conf="" matcher="exact"/>
+			<exclude org="org.hamcrest" module="*" name="*" type="*" ext="*" conf="" matcher="exact"/>
+			<exclude org="javax.ws.rs" module="*" name="*" type="*" ext="*" conf="" matcher="exact"/>
+			<exclude org="javax.ws.rs" module="jsr311-api" name="*" type="*" ext="*" conf="" matcher="exact"/>
+			<exclude org="com.sun.jersey" module="*" name="*" type="*" ext="*" conf="" matcher="exact"/>
+			<exclude org="com.sun.jersey" module="jersey-client" name="*" type="*" ext="*" conf="" matcher="exact"/>
+			<exclude org="com.sun.jersey" module="jersey-server" name="*" type="*" ext="*" conf="" matcher="exact"/>
+			<exclude org="org.slf4j" module="slf4j-log4j12" name="*" type="*" ext="*" conf="" matcher="exact"/>
+			<exclude org="log4j" module="log4j" name="*" type="*" ext="*" conf="" matcher="exact"/>
+			<exclude org="org.slf4j" module="slf4j-log4j" name="*" type="*" ext="*" conf="" matcher="exact"/>
+			<exclude org="org.slf4j" module="slf4j-api" name="*" type="*" ext="*" conf="" matcher="exact"/>
+			<exclude org="org.apache.logging.log4j" module="log4j-api" name="*" type="*" ext="*" conf="" matcher="exact"/>
+			<exclude org="org.slf4j" module="log4j-over-slf4j" name="*" type="*" ext="*" conf="" matcher="exact"/>
+			<exclude org="log4j" module="apache-log4j-extras" name="*" type="*" ext="*" conf="" matcher="exact"/>
+		</dependency>
+		<dependency org="org.mockito" name="mockito-all" rev="1.8.4" conf="compile->default(compile)"/>
+		<dependency org="com.fasterxml.jackson.module" name="jackson-module-scala_2.11" rev="2.9.4" conf="compile->default(compile)"/>
+		<dependency org="com.fasterxml.jackson.core" name="jackson-annotations" rev="2.9.4" conf="compile->default(compile)"/>
+		<dependency org="com.fasterxml.jackson.core" name="jackson-core" rev="2.9.4" conf="compile->default(compile)"/>
+		<dependency org="com.fasterxml.jackson.core" name="jackson-databind" rev="2.9.4" conf="compile->default(compile)"/>
+		<dependency org="com.fasterxml.jackson.module" name="jackson-module-afterburner" rev="2.9.4" conf="compile->default(compile)"/>
+		<dependency org="com.fasterxml.jackson.datatype" name="jackson-datatype-joda" rev="2.9.4" conf="compile->default(compile)"/>
+		<dependency org="com.fasterxml.jackson.datatype" name="jackson-datatype-guava" rev="2.9.4" conf="compile->default(compile)"/>
+		<dependency org="com.fasterxml.jackson.datatype" name="jackson-datatype-jdk8" rev="2.9.4" conf="compile->default(compile)"/>
+		<dependency org="com.fasterxml.jackson.datatype" name="jackson-datatype-jsr310" rev="2.9.4" conf="compile->default(compile)"/>
+		<dependency org="com.fasterxml.jackson.jaxrs" name="jackson-jaxrs-json-provider" rev="2.9.4" conf="compile->default(compile)"/>
+		<dependency org="log4j" name="log4j" rev="1.2.17" force="true" conf="compile->default(compile)"/>
+		<dependency org="org.slf4j" name="slf4j-log4j12" rev="1.7.25" force="true" conf="compile->default(compile)"/>
+		<dependency org="javax.ws.rs" name="javax.ws.rs-api" rev="2.0.1" conf="compile->default(compile)"/>
+		<dependency org="com.typesafe.akka" name="akka-stream_2.11" rev="2.5.13" conf="compile->default(compile)"/>
+		<dependency org="apixio" name="apixio-mcs-client-cli" rev="0.2.4-SNAPSHOT" conf="compile->default(compile)">
+			<exclude org="apixio" module="model" name="*" type="*" ext="*" conf="" matcher="exact"/>
+		</dependency>
+		<dependency org="apixio" name="apixio-mcs-client-common" rev="0.2.4-SNAPSHOT" conf="compile->default(compile)"/>
+		<dependency org="apixio" name="apixio-mcs-client-marshal" rev="0.2.4-SNAPSHOT" conf="compile->default(compile)"/>
+		<dependency org="apixio" name="apixio-bizlogic" rev="4.2.11" conf="compile->default(compile)">
+			<exclude org="org.slf4j" module="slf4j-log4j12" name="*" type="*" ext="*" conf="" matcher="exact"/>
+			<exclude org="log4j" module="log4j" name="*" type="*" ext="*" conf="" matcher="exact"/>
+			<exclude org="org.apache.logging.log4j" module="log4j-api" name="*" type="*" ext="*" conf="" matcher="exact"/>
+		</dependency>
+		<dependency org="apixio" name="apixio-dao" rev="4.2.11" conf="compile->default(compile)">
+			<exclude org="org.slf4j" module="slf4j-log4j12" name="*" type="*" ext="*" conf="" matcher="exact"/>
+			<exclude org="log4j" module="log4j" name="*" type="*" ext="*" conf="" matcher="exact"/>
+			<exclude org="org.apache.logging.log4j" module="log4j-api" name="*" type="*" ext="*" conf="" matcher="exact"/>
+		</dependency>
+		<dependency org="apixio" name="apixio-messaging" rev="1.0.16" conf="compile->default(compile)">
+			<exclude org="org.slf4j" module="slf4j-log4j12" name="*" type="*" ext="*" conf="" matcher="exact"/>
+			<exclude org="log4j" module="log4j" name="*" type="*" ext="*" conf="" matcher="exact"/>
+			<exclude org="org.apache.logging.log4j" module="log4j-api" name="*" type="*" ext="*" conf="" matcher="exact"/>
+			<exclude org="com.typesafe.akka" module="akka-stream-kafka" name="*" type="*" ext="*" conf="" matcher="exact"/>
+		</dependency>
+		<dependency org="org.springframework" name="spring-beans" rev="5.0.6.RELEASE" conf="compile->default(compile)"/>
+		<dependency org="org.springframework" name="spring-core" rev="5.0.6.RELEASE" conf="compile->default(compile)"/>
+		<dependency org="org.apache.logging.log4j" name="log4j-core" rev="2.11.0" force="true" conf="compile->default(compile)"/>
+		<dependency org="log4j" name="apache-log4j-extras" rev="1.2.17" force="true" conf="compile->default(compile)"/>
+		<dependency org="io.gatling" name="jsonpath_2.11" rev="0.6.10" conf="compile->default(compile)"/>
+		<exclude org="javax.ws.rs" module="jsr311-api" artifact="*" type="*" ext="*" matcher="exact"/>
+		<exclude org="org.hamcrest" module="hamcrest-core" artifact="*" type="*" ext="*" matcher="exact"/>
+		<exclude org="org.springframework" module="spring-aop" artifact="*" type="*" ext="*" matcher="exact"/>
+		<exclude org="org.slf4j" module="slf4j-log4j13" artifact="*" type="*" ext="*" matcher="exact"/>
+		<exclude org="commons-beanutils" module="commons-beanutils-core" artifact="*" type="*" ext="*" matcher="exact"/>
+		<exclude org="com.codahale.metrics" module="metrics-annotation" artifact="*" type="*" ext="*" matcher="exact"/>
+		<exclude org="com.codahale.metrics" module="metrics-core" artifact="*" type="*" ext="*" matcher="exact"/>
+		<exclude org="net.jpountz.lz4" module="lz4" artifact="*" type="*" ext="*" matcher="exact"/>
+		<exclude org="org.springframework" module="spring-web" artifact="*" type="*" ext="*" matcher="exact"/>
+		<exclude org="org.springframework" module="spring-context-support" artifact="*" type="*" ext="*" matcher="exact"/>
+		<exclude org="net.minidev" module="asm" artifact="*" type="*" ext="*" matcher="exact"/>
+		<exclude org="xml-apis" module="xml-apis" artifact="*" type="*" ext="*" matcher="exact"/>
+		<exclude org="javax.servlet.jsp" module="jsp-api" artifact="*" type="*" ext="*" matcher="exact"/>
+		<exclude org="javax.ws.rs" module="jsr311-api" artifact="*" type="*" ext="*" matcher="exact"/>
+		<exclude org="com.sun.jersey" module="jersey-core" artifact="*" type="*" ext="*" matcher="exact"/>
+		<exclude org="com.sun.jersey" module="jersey-server" artifact="*" type="*" ext="*" matcher="exact"/>
+		<exclude org="org.apache.logging.log4j" module="log4j-api" artifact="*" type="*" ext="*" matcher="exact"/>
+		<exclude org="org.slf4j" module="slf4j-log4j12" artifact="*" type="*" ext="*" matcher="exact"/>
+		<exclude org="org.slf4j" module="log4j-over-slf4j" artifact="*" type="*" ext="*" matcher="exact"/>
+		<exclude org="com.sun.jersey" module="jersey-client" artifact="*" type="*" ext="*" matcher="exact"/>
+		<exclude org="com.sun.jersey" module="*" artifact="*" type="*" ext="*" matcher="exact"/>
+		<exclude org="jline" module="*" artifact="*" type="*" ext="*" matcher="exact"/>
+		<exclude org="javax.el" module="javax.el-api" artifact="*" type="*" ext="*" matcher="exact"/>
+		<exclude org="org.glassfish.web" module="javax.el" artifact="*" type="*" ext="*" matcher="exact"/>
+		<exclude org="org.apache.hadoop" module="hadoop-common" artifact="*" type="*" ext="*" matcher="exact"/>
+		<exclude org="org.apache.avro" module="avro" artifact="*" type="*" ext="*" matcher="exact"/>
+		<exclude org="org.apache.hadoop" module="hadoop-auth" artifact="*" type="*" ext="*" matcher="exact"/>
+		<exclude org="com.amazonaws" module="aws-java-sdk-core" artifact="*" type="*" ext="*" matcher="exact"/>
+		<exclude org="org.mockito" module="mockito-all" artifact="*" type="*" ext="*" matcher="exact"/>
+		<exclude org="org.ow2.asm" module="asm" artifact="*" type="*" ext="*" matcher="exact"/>
+		<exclude org="com.esotericsoftware.kryo" module="kryo" artifact="*" type="*" ext="*" matcher="exact"/>
+		<exclude org="com.amazonaws" module="aws-java-sdk" artifact="*" type="*" ext="*" matcher="exact"/>
+		<exclude org="org.apache.hadoop" module="hadoop-yarn-api" artifact="*" type="*" ext="*" matcher="exact"/>
+		<exclude org="io.get-coursier" module="coursier_2.11" artifact="*" type="*" ext="*" matcher="exact"/>
+		<exclude org="org.apache.htrace" module="htrace-core4" artifact="*" type="*" ext="*" matcher="exact"/>
+		<exclude org="com.fasterxml.jackson.core" module="jackson-annotations" artifact="*" type="*" ext="*" matcher="exact"/>
+		<exclude org="org.apache.hadoop" module="hadoop-aws" artifact="*" type="*" ext="*" matcher="exact"/>
+		<exclude org="org.apache.hadoop" module="hadoop-hdfs" artifact="*" type="*" ext="*" matcher="exact"/>
+		<exclude org="org.jboss.spec.javax.transaction" module="jboss-transaction-api_1.2_spec" artifact="*" type="*" ext="*" matcher="exact"/>
+		<override org="org.slf4j" module="slf4j-log4j12" matcher="exact" rev="1.7.25"/>
+		<override org="log4j" module="log4j" matcher="exact" rev="1.2.17"/>
+		<override org="org.slf4j" module="slf4j-api" matcher="exact" rev="1.7.25"/>
+		<override org="apixio" module="apixio-messaging" matcher="exact" rev="1.0.16"/>
+		<override org="log4j" module="apache-log4j-extras" matcher="exact" rev="1.2.17"/>
+		<override org="org.apache.kafka" module="kafka-clients" matcher="exact" rev="1.1.1"/>
+		<override org="com.typesafe.akka" module="akka-stream-kafka_2.11_2.11" matcher="exact" rev="1.0"/>
+	</dependencies>
+</ivy-module>

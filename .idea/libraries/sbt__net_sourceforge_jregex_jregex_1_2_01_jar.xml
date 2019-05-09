@@ -1,0 +1,11 @@
+<component name="libraryTable">
+  <library name="sbt: net.sourceforge.jregex:jregex:1.2_01:jar">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.ivy2/cache/net.sourceforge.jregex/jregex/jars/jregex-1.2_01.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.ivy2/cache/net.sourceforge.jregex/jregex/srcs/jregex-1.2_01-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

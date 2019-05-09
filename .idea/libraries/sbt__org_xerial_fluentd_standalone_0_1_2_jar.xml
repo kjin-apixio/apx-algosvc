@@ -1,0 +1,11 @@
+<component name="libraryTable">
+  <library name="sbt: org.xerial:fluentd-standalone:0.1.2:jar">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.ivy2/cache/org.xerial/fluentd-standalone/jars/fluentd-standalone-0.1.2.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.ivy2/cache/org.xerial/fluentd-standalone/srcs/fluentd-standalone-0.1.2-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

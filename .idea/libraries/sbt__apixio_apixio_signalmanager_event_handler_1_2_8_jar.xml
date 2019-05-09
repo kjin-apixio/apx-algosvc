@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="sbt: apixio:apixio-signalmanager-event-handler:1.2.8:jar">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.ivy2/cache/apixio/apixio-signalmanager-event-handler/jars/apixio-signalmanager-event-handler-1.2.8.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

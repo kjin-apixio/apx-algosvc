@@ -1,0 +1,11 @@
+<component name="libraryTable">
+  <library name="sbt: net.sourceforge.owlapi:owlapi-rio:4.2.3:jar">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.ivy2/cache/net.sourceforge.owlapi/owlapi-rio/jars/owlapi-rio-4.2.3.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.ivy2/cache/net.sourceforge.owlapi/owlapi-rio/srcs/owlapi-rio-4.2.3-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>
