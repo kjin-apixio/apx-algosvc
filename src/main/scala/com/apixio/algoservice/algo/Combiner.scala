@@ -3,14 +3,11 @@ package com.apixio.algoservice.algo
 import java.util
 
 import com.apixio.mcs.client.combination.CombinerModelCombination
-
 import scala.collection.JavaConverters._
 import com.apixio.XUUID
 import com.apixio.algoservice.common.EnvConfig._
 import com.apixio.dao.utility.{DaoServices, DaoServicesSet}
 import com.apixio.ensemble.ifc._
-import com.apixio.ensemble.impl.common.Generator
-import com.apixio.ensemble.impl.factory.SignalCombinerFactory
 import com.apixio.messaging.messages.PredictionMessage
 import com.apixio.model.event.EventType
 import com.apixio.restbase.config.ConfigSet
@@ -21,12 +18,13 @@ import com.apixio.signalmanager.eventhandler.util.Utils.DEFAULT_SENT_DT
 import com.apixio.algoservice.util.AlgoUtils._
 import com.apixio.signalmanager.eventhandler.messages.DocumentAddressMessage
 import org.slf4j.LoggerFactory
-import com.apixio.mcs.client.cli.commands.AbstractBenchmarkCommand
-import com.apixio.mcs.client.combiner.CombinerMaterializer
-
+import com.apixio.mcs.client.combiner.{CombinerExecutionContext, CombinerMaterializer}
+import org.joda.time.DateTime
+import com.apixio.mcs.client.cli.context.ExecutionContextReporter
+import com.apixio.mcs.client.cli.context.PlatformServicesFactory
 import scala.util.{Failure, Success, Try}
 
-class Combiner (val combinerMaterializer: CombinerMaterializer ){
+class Combiner (val combinerMaterializer: CombinerMaterializer, val daoServices: DaoServices, val logS3Ops: Boolean){
   var combiner: ManagedLifecycle[SignalCombinationParams, util.List[EventType]] = _
   var signalLogic: SignalLogic = _
 
@@ -34,21 +32,21 @@ class Combiner (val combinerMaterializer: CombinerMaterializer ){
 
   def initializeCombiners(): Unit = {
     val mcId = "B_3693aa6b-f92a-4bb5-8494-9d1eadac3890"
+    val modelCombination: CombinerModelCombination = combinerMaterializer.resolveLocalCombination(mcId)
+    combiner = combinerMaterializer.createCombiner(modelCombination);
+    val platformServicesFactory: PlatformServicesFactory = new PlatformServicesFactory(daoServices, logS3Ops)
+    combiner.setup(CombinerExecutionContext.builder
+      .configuration(modelCombination.configurationData)
+      .reporter(new ExecutionContextReporter())
+      .platformServices(platformServicesFactory.platformServices)
+      .submitTime(new DateTime)
+      .patientDataSet("0000")
+      .workName("").build)
 
-    //val modelCombination: CombinerModelCombination = benchmarkResolve(mcId)
     val logger = LoggerFactory.getLogger(classOf[Combiner])
-    val modelCombination = benchmarkResolve(mcId)
-    this.combiner = benchmarkCreate(modelCombination)
-    benchmarkSetup(modelCombination, combiner)
-
     val daoConfig = ConfigSet.fromMap(daos)
-    val daoServices = DaoServicesSet.createDaoServices(daoConfig)
     this.signalLogic = new SignalLogic(daoServices, daoConfig, null)
-    val patientLogic = signalLogic.getPatientLogic
     signalLogic.setOverrideActiveSignalGenList(loadActiveSigGens("siggens_cr.pretty.json"))
-
-
-
 /*
     val logger = LoggerFactory.getLogger(classOf[Combiner])
     // create combinerNums number of combiner, currently create one combiner for test

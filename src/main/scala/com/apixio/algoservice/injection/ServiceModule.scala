@@ -1,7 +1,7 @@
 package com.apixio.algoservice.injection
 
 import java.net.URI
-import java.nio.file.Path
+import java.nio.file.{Path, Paths}
 import java.util.concurrent.{Executors, TimeUnit}
 
 import akka.actor.{ActorRef, ActorSystem}
@@ -12,9 +12,7 @@ import com.apixio.algoservice.manager.DaemonManager
 import com.apixio.app.manager.actor.kafka.KafkaProducerActor
 import com.apixio.algoservice.algo.Combiner
 import com.apixio.dao.utility.DaoServices
-import com.apixio.datasource.s3.S3Ops
 import com.apixio.mcs.client.combiner.CombinerMaterializer
-import com.apixio.mcs.client.rest.RestClient
 import com.apixio.scala.dw.ApxConfiguration
 import com.google.inject.name.Named
 import com.google.inject.{AbstractModule, Provides}
@@ -31,6 +29,9 @@ class ServiceModule extends AbstractModule {
   var apxConfiguration: ApxConfiguration = _
   var kafkaProducer: ActorRef = _
   val logger = LoggerFactory.getLogger(getClass.getName)
+  val catalog_service_rest_endpoint = "catalog_service_rest_endpoint"
+  val catalog_service_local_cache_dir = "catalog_service_local_cache_dir"
+  val logS3Ops = "logS3Ops"
 
   implicit val system = ActorSystem("KafkaConsumer")
   implicit val materializer = ActorMaterializer(ActorMaterializerSettings(system).withInputBuffer(initialSize = 32, maxSize = 32))(system)
@@ -64,10 +65,13 @@ class ServiceModule extends AbstractModule {
 
   @Provides
   @Named(ServiceNames.combiner)
-  def getCombiner(): Combiner = {
+  def getCombiner(@Named(ServiceNames.combinerMaterializer) combinerMaterializer: CombinerMaterializer): Combiner = {
     synchronized[Combiner] {
       servicesCache.getOrElse(ServiceNames.combiner, {
-        val combiner = new Combiner()
+        val logS3OpsVal: String = apxConfiguration.propertyHelperConfig.getOrElse(logS3Ops, "")
+        var logS30psInBoolean = false
+        if(!logS3OpsVal.isEmpty() && logS3OpsVal.equals("true")) logS30psInBoolean = true
+        val combiner = new Combiner(combinerMaterializer, daoServices, logS30psInBoolean)
         servicesCache.put(ServiceNames.combiner, combiner)
         combiner
       }).asInstanceOf[Combiner]
@@ -78,7 +82,14 @@ class ServiceModule extends AbstractModule {
   @Named(ServiceNames.combinerMaterializer)
   def getCombinerMaterializer(): CombinerMaterializer = synchronized[CombinerMaterializer] {
     servicesCache.getOrElse(ServiceNames.combiner, {
-      val combinerMaterializer: CombinerMaterializer = CombinerMaterializer.createCombinerMaterializer(mcsServiceUri: URI, daoServices: DaoServices, homeDir: Path)
+      val propertyHelperConfig: Map[String, String] = apxConfiguration.propertyHelperConfig
+      val endpoint: String = propertyHelperConfig.getOrElse(catalog_service_rest_endpoint, "")
+      val mcsServiceUri = new URI(endpoint)
+
+      val dir: String = propertyHelperConfig.getOrElse(catalog_service_local_cache_dir, "")
+      val homeDir: Path = Paths.get(dir)
+
+      val combinerMaterializer: CombinerMaterializer = CombinerMaterializer.createCombinerMaterializer(mcsServiceUri: URI, this.daoServices: DaoServices, homeDir: Path)
 
       servicesCache.put(ServiceNames.combinerMaterializer, combinerMaterializer)
       combinerMaterializer
@@ -141,5 +152,4 @@ object ServiceNames {
   final val documentAddressMessageConsumer = "documentAddressMessageConsumer"
   final val messageAndStatusProducer = "messageAndStatusProducer"
   final val combinerMaterializer = "combinerMaterializer"
-  //final val combinerMaterializer = "combinerMaterializer"
 }

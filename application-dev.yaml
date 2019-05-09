@@ -118,6 +118,23 @@ logging:
       timeZone: UTC
       logFormat: # TODO
 
+
+propertyHelperConfig:
+  applicationId: apx-modelcatalog-client-cli
+
+  logS3ops: true
+  # location of the MCS rest server
+  # Uncomment to use prod
+  # catalog_service_rest_endpoint: https://modelcatalogsvc.apixio.com:8443/
+  # Uncomment to use staging
+  catalog_service_rest_endpoint: https://modelcatalogsvc-stg.apixio.com:8443/
+
+  # filesystem directory to store model combination ingredient files
+  # defaults to current user's home directory
+  catalog_service_local_cache_dir: /tmp/mcsblobs
+
+
+
 redis:
   host: redis-1-stg.apixio.com
   port: 6379
@@ -263,9 +280,9 @@ application:
     batchSize: 100
     maxIntervalInSecs: 60
     indexerSignalTopic: "indexer_signals-high-stg"
-  smugglingConsumer:
+  documentAddressMessageConsumer:
     brokerList: kafka-modern.stg.apixio.com:9092
-    consumerGroup: "SmugglerGroupLocal"
+    consumerGroup: "SmugglerGroupLocal"// group need to define
     topic: "^smugglerLocal.*"
     consumerParallelismFactor: 5
     commitParallelismFactor: 5
