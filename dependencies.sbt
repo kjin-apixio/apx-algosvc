@@ -124,12 +124,7 @@ libraryDependencies ++= Seq(
   "org.slf4j" % "slf4j-log4j12" % "1.7.25" force(),
   "javax.ws.rs" % "javax.ws.rs-api" % "2.0.1",
   "com.typesafe.akka" %% "akka-stream" % "2.5.13",
-  "apixio" % "apixio-mcs-client-cli" % "0.2.4-SNAPSHOT"
-    excludeAll(
-      ExclusionRule("apixio", "model")
-  ),
-  "apixio" % "apixio-mcs-client-common" % "0.2.4-SNAPSHOT",
-  "apixio" % "apixio-mcs-client-marshal" % "0.2.4-SNAPSHOT",
+  "apixio" % "apixio-mcs-client-common" % "0.2.4",
   "apixio" % "apixio-bizlogic" % "4.2.11"
     excludeAll(
       ExclusionRule("org.slf4j", "slf4j-log4j12"),
@@ -154,7 +149,8 @@ libraryDependencies ++= Seq(
   "org.springframework" % "spring-core" % "5.0.6.RELEASE",
   "org.apache.logging.log4j" % "log4j-core" % "2.11.0" force(),
   "log4j" % "apache-log4j-extras" % "1.2.17" force(),
-  "io.gatling" %% "jsonpath" % "0.6.10"
+  "io.gatling" %% "jsonpath" % "0.6.10",
+  "io.dropwizard.metrics" % "metrics-jmx" % "4.0.2"
 )
 
 
@@ -199,17 +195,11 @@ excludeDependencies ++= Seq(
   ExclusionRule("org.apache.hadoop", "hadoop-yarn-api"),
   ExclusionRule("io.get-coursier", "coursier_2.11"),
   ExclusionRule("org.apache.htrace", "htrace-core4"),
-  ExclusionRule("com.fasterxml.jackson.core", "jackson-annotations"),
+  //ExclusionRule("com.fasterxml.jackson.core", "jackson-annotations"),
   ExclusionRule("org.apache.hadoop", "hadoop-aws"),
   ExclusionRule("org.apache.hadoop", "hadoop-hdfs"),
-
+  ExclusionRule("io.netty", "netty-common"),
   ExclusionRule("org.jboss.spec.javax.transaction", "jboss-transaction-api_1.2_spec")
-  //ExclusionRule("apixio", "apixio-ensemble-extractors_2.11"),
-  //ExclusionRule("apixio", "apixio-ensemble-generators_2.11"),
-  //ExclusionRule("apixio", "apixio-ensemble-common-impl_2.11"),
-  //ExclusionRule("apixio", "apixio-ensemble-combiners_2.11"),
-  //ExclusionRule("apixio", "apixio-ensemble-interface_2.11")
-
 )
 
 dependencyOverrides ++= Seq(

@@ -47,7 +47,7 @@ lazy val root = (project in file("."))
     excludeFilter in Compile := "spring.tooling",
 
     addArtifact(artifact in(Compile, assembly), assembly),
-    mainClass in assembly := Some("com.apixio.patientservice.PatientServiceApplication"),
+    mainClass in assembly := Some("com.apixio.algoservice.AlgorithmServiceApplication"),
     assemblyMergeStrategy in assembly := {
       case x if x.endsWith(".properties") => MergeStrategy.last
       case PathList("org", "apache", "commons", "logging", "impl", xs@_*) => MergeStrategy.first
@@ -62,6 +62,10 @@ lazy val root = (project in file("."))
       case PathList("com", "sun", "research", "ws", "wadl", xs@_ *) => MergeStrategy.last
       case PathList("javax", "servlet", xs@_ *) => MergeStrategy.first
       case PathList("javax", "ws", "rs", xs@_ *) => MergeStrategy.last
+      case PathList("com", "apixio", "ensemble", xs@_*) => MergeStrategy.first
+      case PathList("com", "google", "inject", "multibindings", xs@_*) => MergeStrategy.first
+      case PathList("com", "google", "inject", "multibindings", xs@_*) => MergeStrategy.first
+      case PathList("config.yaml") => MergeStrategy.first
       case x if Assembly.isConfigFile(x) =>
         MergeStrategy.concat
       case PathList(ps@_*) if Assembly.isReadme(ps.last) || Assembly.isLicenseFile(ps.last) =>
