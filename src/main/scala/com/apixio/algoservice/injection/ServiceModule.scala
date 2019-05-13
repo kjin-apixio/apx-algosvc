@@ -106,7 +106,7 @@ class ServiceModule extends AbstractModule {
         val topicConfig = apxConfiguration.application("documentAddressMessageConsumer").asInstanceOf[Map[String, Object]]
         val brokerList = topicConfig("brokerList").asInstanceOf[String]
         val consumerGroup = topicConfig("consumerGroup").asInstanceOf[String]
-        val topic = topicConfig("DocumentAddressMessage").asInstanceOf[String]
+        val topic = topicConfig("topic").asInstanceOf[String]
         val consumerParallelismFactor = topicConfig("consumerParallelismFactor").asInstanceOf[Int]
         val commitParallelismFactor = topicConfig("commitParallelismFactor").asInstanceOf[Int]
         val numRetries = topicConfig("numRetries").asInstanceOf[Int]

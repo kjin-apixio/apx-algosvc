@@ -47,29 +47,37 @@ class AlgorithmServiceApplication extends Application[ApxConfiguration] with Api
 
   override def run(cfg: ApxConfiguration, env: Environment) {
     try {
+      print("Setting up service...")
       info("Setting up service...")
       ApxServices.init(cfg)
       ApxServices.setupDefaultModels
       info("ApxServices service setting finished.")
+      print("ApxServices service setting finished.")
 
       //Initialize DaoServices from Scala Commons
-      info("Setting up DaoService...")
+      info("Setting up DaoServices...")
+      print("Setting up DaoService...")
       DaoService.withDaoServices(ApxServices.daoServices)
+      print("DaoServices setting finished: step 1.")
       val daoservice: DaoService = new Object() with DaoService
       info("DaoService setting finished.")
+      print("DaoServices setting finished step 2.")
 
       ApxServices.setupApxLogging()
+      print("Instantiate setupApxLogging...")
       setupLog(getClass.getCanonicalName)
       // Instantiate all the dependencies using this init and use @Provides @Named dynamically so no need to bind them
       info("Instantiate serviceModule start...")
+      print("Instantiate serviceModule start...")
       serviceModule.init(cfg, env, daoservice.daoServices)
       // Start all daemon services
       //initSwagger(cfg, env)
-
+      print("_________________________________")
       guiceBundle.getInjector.getInstance[DaemonManager](
         Key.get(classOf[DaemonManager], Names.named(ServiceNames.daemonManager))
       ).start
       info("All services started.")
+      print("All services started.")
 
       sys.ShutdownHookThread {
         info("Gracefully stopping AlgoService")
@@ -132,7 +140,7 @@ object AlgorithmServiceApplication {
     * @param args Command line arguments.
     */
   def main(args: Array[String]) = {
-    val app = new AlgorithmServiceApplication()
+    val app: AlgorithmServiceApplication = new AlgorithmServiceApplication()
     app.run(args: _*)
   }
 }

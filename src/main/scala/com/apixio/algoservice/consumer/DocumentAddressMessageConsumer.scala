@@ -80,6 +80,7 @@ case class DocumentAddressMessageConsumer(brokers: String,
 
   private def process(message: ConsumerMessage.CommittableMessage[Array[Byte], String]): Future[Done] = {
     val data: String = message.record.value
+    print(data)
     logger.debug(s"Got Message: $data")
 
     // recover the data from String to DocumentAddressMessage and produce the message

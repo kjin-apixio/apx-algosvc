@@ -20,8 +20,8 @@ import com.apixio.signalmanager.eventhandler.messages.DocumentAddressMessage
 import org.slf4j.LoggerFactory
 import com.apixio.mcs.client.combiner.{CombinerExecutionContext, CombinerMaterializer}
 import org.joda.time.DateTime
-import com.apixio.mcs.client.cli.context.ExecutionContextReporter
-import com.apixio.mcs.client.cli.context.PlatformServicesFactory
+import com.apixio.mcs.client.context.ExecutionContextReporter
+import com.apixio.mcs.client.context.PlatformServicesFactory
 import scala.util.{Failure, Success, Try}
 
 class Combiner (val combinerMaterializer: CombinerMaterializer, val daoServices: DaoServices, val logS3Ops: Boolean){
